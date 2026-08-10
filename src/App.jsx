@@ -6,6 +6,7 @@ import WishList from "./components/WishList"
 import Category from "./components/Category"
 import Cart from "./components/Cart"
 import store from "./utils/store"
+import Profile from "./components/Profile"
 
 
 
@@ -32,6 +33,10 @@ const appRouter = createBrowserRouter([
         element: <Category/>
       },
     ]
+  },
+  {
+    path:"profile",
+    element:<Profile />
   }
 ])
 
