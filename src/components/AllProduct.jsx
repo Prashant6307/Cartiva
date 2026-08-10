@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from "react-redux"
 import { addItems, removeItem } from "../utils/cartSlice"
 import { addWishlistItem, removeWishlistItem } from "../utils/wishListSlice"
+import { useNavigate } from "react-router-dom"
 
 
 
 function AllProduct({ product }) {
     const cart = useSelector(store => store.cart.items)
     const wishList = useSelector(store => store.wishList.items)
-    console.log(product);
+    const navigate = useNavigate()
     
     const dispatch = useDispatch()
 
@@ -20,7 +21,7 @@ function AllProduct({ product }) {
     
 
     return (
-        <div>
+        <div onClick={()=> navigate(`/product/${product.id}`)}>
             <div className="card bg-base-100 w-96 shadow-sm">
                 <figure>
                     <img
