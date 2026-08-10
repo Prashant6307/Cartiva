@@ -1,10 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Body from "./components/Body"
 import { Provider } from "react-redux"
-import store from "./utils/store"
 import Hero from "./components/Hero"
 import WishList from "./components/WishList"
 import Category from "./components/Category"
+import Cart from "./components/Cart"
+import store from "./utils/store"
+
 
 
 function App() {
@@ -16,6 +18,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/",
         element: <Hero/>
+      },
+      {
+        path: "/cart",
+        element: <Cart/>
       },
       {
         path: "/wishlist",
@@ -33,7 +39,9 @@ const appRouter = createBrowserRouter([
     <>
       <Provider store={store} >
         
-        <RouterProvider router={appRouter} />
+          <RouterProvider router={appRouter} />
+        
+        
       </Provider>
     </>
   )

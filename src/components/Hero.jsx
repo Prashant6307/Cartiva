@@ -21,7 +21,10 @@ function Hero() {
     return (
         <div className="flex flex-wrap gap-4 mt-4 p-4 justify-center">
             {product.map((item) => (
-                <AllProduct key={item.id} title={item.title} price={item.price} thumbnail={item.thumbnail} description={item.description} availability={item.availabilityStatus} />
+                <AllProduct
+                    key={item.id}
+                    product={item}
+                />
             ))}
         </div>
     )
