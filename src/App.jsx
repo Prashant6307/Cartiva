@@ -8,6 +8,7 @@ import Cart from "./components/Cart"
 import store from "./utils/store"
 import Profile from "./components/Profile"
 import ProductsDetails from "./components/ProductsDetails"
+import SearchResults from "./components/SearchResults"
 
 
 
@@ -36,6 +37,10 @@ function App() {
         {
           path: "/product/:id",
           element: <ProductsDetails />
+        },
+        {
+          path: "/search/:query",
+          element: <SearchResults />
         }
       ]
     },

@@ -1,20 +1,23 @@
+import { useState } from "react"
 import { useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 
 
 function Navbar() {
 
+    const [query, setQuery] = useState("")
+
     const navigate = useNavigate()
     const cart = useSelector(store => store.cart.items)
     const totalPrice = cart.reduce(
-    (total, item) => total + item.price,
-    0
-);
+        (total, item) => total + item.price,
+        0
+    );
     return (
         <nav >
             <div className="navbar bg-base-100 shadow-sm p-4">
                 <div className="flex-1">
-                    <img src="./images/cartiva-logo-removebg.png" alt="" className="w-28" />
+                    <img src="../images/cartiva-logo-removebg.png" alt="logo" className="w-28" />
                 </div>
                 <div className="flex gap-4 ">
                     <ul className="flex items-center gap-4 font-bold px-1">
@@ -23,7 +26,13 @@ function Navbar() {
                     </ul>
 
 
-                    <input type="text" placeholder="Type here" className="input" />
+                    <input type="text" value={query} onChange={(e) => setQuery(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter" && query.trim()) {
+                                navigate(`/search/${query}`)
+                            }
+                        }} placeholder="Type here" className="input" />
+
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                             <div className="indicator">
@@ -38,7 +47,7 @@ function Navbar() {
                                 <span className="text-lg font-bold">{cart.length} Items</span>
                                 <span className="text-info">Subtotal: ${totalPrice.toFixed(2)}</span>
                                 <div className="card-actions">
-                                    <button onClick={()=>navigate("/cart")} className="btn btn-primary btn-block">View cart</button>
+                                    <button onClick={() => navigate("/cart")} className="btn btn-primary btn-block">View cart</button>
                                 </div>
                             </div>
                         </div>
