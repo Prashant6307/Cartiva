@@ -75,7 +75,7 @@ function Navbar() {
                                 </Link>
                             </li>
                             <li><Link to={"settings"}>Settings</Link></li>
-                            <li><Link to={"settings"}>Logout</Link></li>
+                            <li><Link to={"login"}>Login</Link></li>
                         </ul>
                     </div>
                 </div>

@@ -9,6 +9,7 @@ import store from "./utils/store"
 import Profile from "./components/Profile"
 import ProductsDetails from "./components/ProductsDetails"
 import SearchResults from "./components/SearchResults"
+import Login from "./components/Login"
 
 
 
@@ -48,6 +49,10 @@ function App() {
       path: "profile",
       element: <Profile />
     },
+    {
+      path:"login",
+      element:<Login />
+    }
 
   ])
 

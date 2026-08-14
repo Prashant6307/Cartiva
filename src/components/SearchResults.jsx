@@ -19,7 +19,7 @@ function SearchResults() {
         getQueryResults(query)
     },[query])
   return (
-    <div className="flex flex-wrap p-8 gap-8 ">
+    <div className="flex flex-wrap p-8 gap-8 justify-center">
         {product.map((item) => (
                 <AllProduct
                     key={item.id}
