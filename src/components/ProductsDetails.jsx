@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addWishlistItem, removeWishlistItem } from "../utils/wishListSlice";
 import { addItems } from "../utils/cartSlice";
-import { removeItem } from "framer-motion";
+import { removeItem } from "../utils/cartSlice";
 
 function ProductsDetails() {
 
@@ -15,11 +15,9 @@ function ProductsDetails() {
     const cart = useSelector(store => store.cart.items);
     const wishList = useSelector(store => store.wishList.items);
 
-
-    
     const isAdded = cart.some(
         item => item.id === product?.id
-    )
+    )  
     const isWishListAdded = wishList.some(
         item => item.id === product?.id
     )
@@ -36,7 +34,7 @@ function ProductsDetails() {
     }, [id]);
 
 
-    
+
 
 
     return (
@@ -130,7 +128,7 @@ function ProductsDetails() {
                                         dispatch(addItems(product));
                                     }
                                 }}
-                                className="btn btn-primary"
+                                className={`btn ${isAdded ? "btn-error" : "btn-primary"}`}
                             >
                                 {isAdded ? "Remove from Cart" : "Add to Cart"}
                             </button>

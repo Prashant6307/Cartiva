@@ -9,33 +9,39 @@ function AllProduct({ product }) {
     const cart = useSelector(store => store.cart.items)
     const wishList = useSelector(store => store.wishList.items)
     const navigate = useNavigate()
-    
+
     const dispatch = useDispatch()
 
     const isAdded = cart.some(
-        item => item.id === product.id
+        item => item?.id === product?.id
     )
     const isWishListAdded = wishList.some(
-        item => item.id === product.id
+        item => item?.id === product?.id
     )
-    
+
 
     return (
-        <div onClick={()=> navigate(`/product/${product.id}`)}>
-            <div className="card bg-base-100 w-96 shadow-sm">
-                <figure>
-                    <img
-                        src={product.thumbnail}
-                        alt="Shoes" />
-                </figure>
+        <div>
+            <div className="card bg-base-100 sm:w-96 shadow-sm">
                 <div className="card-body">
-                    <h2 className="card-title flex flex-wrap">
-                        {product.title}
+                    <div onClick={() => navigate(`/product/${product.id}`)}>
+                        <figure>
+                            <img
+                                src={product.thumbnail}
+                                alt="product-image" 
+                                className="w-28 sm:w-48"
+                                />
+                        </figure>
 
-                        <div className="badge badge-secondary">{product.availabilityStatus}</div>
-                        <p>${product.price}</p>
-                    </h2>
-                    <p>{product.description}</p>
+                        <h2 className="card-title flex flex-wrap">
+                            {product.title}
+
+                            <div className="badge badge-secondary">{product.availabilityStatus}</div>
+                            <p>${product.price}</p>
+                        </h2>
+                        <p>{product.description}</p>
+                    </div>
+
                     <div className="card-actions justify-end">
                         <button onClick={() => {
                             if (isWishListAdded) {

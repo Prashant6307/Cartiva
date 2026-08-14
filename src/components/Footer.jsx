@@ -7,12 +7,12 @@ function Footer() {
 
             <aside>
                 <h2 className="text-2xl font-bold text-primary">
-                    Cartiva
+                    Cartway
                 </h2>
                 <p>
                     Your modern shopping destination.
                     <br />
-                    © 2026 Cartiva. All rights reserved.
+                    © 2026 Cartway. All rights reserved.
                 </p>
             </aside>
 

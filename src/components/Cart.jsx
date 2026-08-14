@@ -5,7 +5,7 @@ import Empty from "./Empty"
 function Cart() {
   const cart = useSelector(store => store.cart.items)
   return (
-    <div>
+    <div className="p-4 flex flex-wrap gap-8">
       {cart.length === 0 ? <Empty page={
 
         <div>

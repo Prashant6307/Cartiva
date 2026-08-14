@@ -17,13 +17,16 @@ function Navbar() {
         <nav >
             <div className="navbar bg-base-100 shadow-sm p-4">
                 <div className="flex-1">
-                    <img src="../images/cartiva-logo-removebg.png" alt="logo" className="w-28" />
+                    <img src="../images/logo.png" alt="logo" className="w-12 sm:w-28" />
                 </div>
-                <div className="flex gap-4 ">
-                    <ul className="flex items-center gap-4 font-bold px-1">
+                <div className="flex gap-4">
+                    <div className="hidden sm:block">
+                        <ul className="flex items-center gap-4 font-bold px-1">
                         <li className="hover:bg-gray-300 p-2 rounded-lg"><Link to={"/"}>Home</Link></li>
                         <li className="hover:bg-gray-300 p-2 rounded-lg"><Link to={"wishlist"}>Wishlist</Link></li>
                     </ul>
+                    </div>
+                    
 
 
                     <input type="text" value={query} onChange={(e) => setQuery(e.target.value)}
@@ -31,7 +34,9 @@ function Navbar() {
                             if (e.key === "Enter" && query.trim()) {
                                 navigate(`/search/${query}`)
                             }
-                        }} placeholder="Type here" className="input" />
+                        }} placeholder="Search" className="input" 
+                        className="px-1 border border-black rounded-md w-28 h-8 sm:w-48"
+                        />
 
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
