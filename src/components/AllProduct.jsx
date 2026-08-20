@@ -22,7 +22,7 @@ function AllProduct({ product }) {
 
     return (
         <div>
-            <div className="card bg-base-100 sm:w-96 shadow-sm">
+            <div className="card bg-base-100 sm:w-96 shadow-sm h-full">
                 <div className="card-body">
                     <div onClick={() => navigate(`/product/${product.id}`)}>
                         <figure>
@@ -33,13 +33,13 @@ function AllProduct({ product }) {
                                 />
                         </figure>
 
-                        <h2 className="card-title flex flex-wrap">
+                        <h2 className="card-title flex flex-wrap text-sm sm:text-xl">
                             {product.title}
 
                             <div className="badge badge-secondary">{product.availabilityStatus}</div>
                             <p>${product.price}</p>
                         </h2>
-                        <p>{product.description}</p>
+                        <p className="text-xs sm:text-xl">{product.description}</p>
                     </div>
 
                     <div className="card-actions justify-end">

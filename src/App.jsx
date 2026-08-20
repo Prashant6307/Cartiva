@@ -10,10 +10,15 @@ import Profile from "./components/Profile"
 import ProductsDetails from "./components/ProductsDetails"
 import SearchResults from "./components/SearchResults"
 import Login from "./components/Login"
-
+import userContext from "./utils/userContext"
+import { useEffect, useState } from "react"
+import { onAuthStateChanged } from "firebase/auth"
+import { auth } from "./utils/firebase"
 
 
 function App() {
+  const [user, setUser] = useState(null)
+
   const appRouter = createBrowserRouter([
     {
       path: "/",
@@ -50,20 +55,37 @@ function App() {
       element: <Profile />
     },
     {
-      path:"login",
-      element:<Login />
+      path: "login",
+      element: <Login />
     }
 
   ])
 
+  useEffect(() => {
+
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+
+      if (currentUser) {
+        setUser(currentUser);
+      } else {
+        setUser(null);
+      }
+
+    })
+
+
+    return () => unsubscribe()
+
+  }, []);
   return (
     <>
-      <Provider store={store} >
+      <userContext.Provider value={{user, setUser}}>
+        <Provider store={store} >
 
-        <RouterProvider router={appRouter} />
+          <RouterProvider router={appRouter} />
 
-
-      </Provider>
+        </Provider>
+      </userContext.Provider>
     </>
   )
 }

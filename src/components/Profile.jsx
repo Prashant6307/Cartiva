@@ -1,4 +1,10 @@
+// import { useContext } from "react";
+// import userContext from "../utils/userContext";
+
 function Profile() {
+    // const { name, email, phone, location } = useContext(userContext)
+    // console.log(userData);
+    const user  = JSON.parse(localStorage.getItem("user"))
     return (
         <div className="min-h-screen bg-base-200 flex justify-center items-center p-6">
 
@@ -18,11 +24,11 @@ function Profile() {
                         </div>
 
                         <h2 className="text-3xl font-bold">
-                            Prashant Kumar
+                            {user.name}
                         </h2>
 
                         <p className="text-gray-500">
-                            prashant@example.com
+                            {user.email}
                         </p>
                     </div>
 
@@ -38,7 +44,7 @@ function Profile() {
                                 Full Name
                             </p>
                             <p className="font-semibold">
-                                Prashant Kumar
+                                {user.displayName}
                             </p>
                         </div>
 
@@ -48,7 +54,7 @@ function Profile() {
                                 Email
                             </p>
                             <p className="font-semibold">
-                                prashant@example.com
+                                {user.email}
                             </p>
                         </div>
 
@@ -58,7 +64,7 @@ function Profile() {
                                 Phone
                             </p>
                             <p className="font-semibold">
-                                +91 9876543210
+                                {user.phone}
                             </p>
                         </div>
 
@@ -68,7 +74,7 @@ function Profile() {
                                 Location
                             </p>
                             <p className="font-semibold">
-                                India
+                                {user.location}
                             </p>
                         </div>
 

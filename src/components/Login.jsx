@@ -1,46 +1,79 @@
-import { useRef, useState } from "react"
+import { useContext, useRef, useState } from "react"
 import { checkValidData } from "../utils/validate"
 import { auth } from "../utils/firebase"
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth"
+import userContext from "../utils/userContext"
+
 
 function Login() {
+
+
     const [isSignInForm, setIsSignInForm] = useState(true)
     const [errorMessage, setErrorMessage] = useState(null)
+    const { setUser } = useContext(userContext);
+
     const email = useRef(null)
     const password = useRef(null)
     const phone = useRef(null)
+    const name = useRef(null)
+    const location = useRef(null)
 
     const handleBtnClick = () => {
-        const message = checkValidData(email.current.value, password.current.value)
+        const message = checkValidData(email.current.value, password.current.value, phone.current.value, name.current.value, location.current.value)
         console.log(message)
         setErrorMessage(message)
         if (message) return
 
-        if (isSignInForm) {
+        if (!isSignInForm) {
             createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
-                .then((userCredential) => {
+                .then(async (userCredential) => {
                     // Signed up 
                     const user = userCredential.user;
+                    await updateProfile(user, {
+                        displayName: name.current.value
+                    });
+                    const userData = {
+                        email: user.email,
+                        name: name.current.value,
+                        phone: phone.current.value,
+                        location: location.current.value
+                    };
+
+
+                    setUser(userData);
+                    console.log(userData);
+                    
+                    localStorage.setItem(
+                        "user",
+                        JSON.stringify(user)
+                    );
                     // ...
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    setErrorMessage(errorMessage)
+                    setErrorMessage(errorCode + errorMessage)
                     // ..
                 });
         }
         else {
             signInWithEmailAndPassword(auth, email.current.value, password.current.value)
                 .then((userCredential) => {
-                    // Signed in 
+
                     const user = userCredential.user;
-                    // ...
+
+                    setUser(user);
+
+                    localStorage.setItem(
+                        "user",
+                        JSON.stringify(user)
+                    );
+
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    setErrorMessage(errorMessage)
+                    setErrorMessage(errorCode + errorMessage)
                 });
 
         }
@@ -75,7 +108,10 @@ function Login() {
                                 <p className="text-sm text-gray-500">
                                     Full Name
                                 </p>
-                                <input type="text" className="border border-black rounded-md px-2 py-1" />
+                                <input
+                                    type="text"
+                                    ref={name}
+                                    className="border border-black rounded-md px-2 py-1" />
                             </div>}
 
                             <div>
@@ -112,9 +148,10 @@ function Login() {
                                 <p className="text-sm text-gray-500">
                                     Location
                                 </p>
-                                <p className="font-semibold">
-                                    India
-                                </p>
+                                <input type="text"
+                                    ref={location}
+                                    className="border border-black rounded-md px-2 py-1"
+                                />
                             </div>
                         </div>
 
