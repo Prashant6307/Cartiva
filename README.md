@@ -4,7 +4,7 @@
 
 Cartway is a modern and responsive e-commerce frontend application built with **React**, **Redux Toolkit**, **Tailwind CSS**, and **DaisyUI**. It provides a smooth shopping experience with product browsing, category filtering, product details, cart management, and wishlist functionality.
 
-🔗 **Live Demo:** [cartway-three.vercel.app](YOUR_LIVE_LINK_HERE)
+🔗 **Live Demo:** [[httpscartway-three.vercel.app](https://cartway-three.vercel.app/)](YOUR_LIVE_LINK_HERE)
 
 ---
 
